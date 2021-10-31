@@ -4,11 +4,11 @@
 1. [Установка библиотек](https://github.com/eremeyko/VKMailing#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B1%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA)
 2. [Заполнение параметров](https://github.com/eremeyko/VKMailing#%D0%97%D0%B0%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%BE%D0%B2)
 
-    2.1 [accounts.txt](https://github.com/eremeyko/VKMailing#accounts.txt)
+    2.1 [accounts.txt](https://github.com/eremeyko/VKMailing#accountstxt)
 
-    2.2 [userlist.txt](https://github.com/eremeyko/VKMailing#userlist.txt)
+    2.2 [userlist.txt](https://github.com/eremeyko/VKMailing#userlisttxt)
 
-    2.3 [messages.txt](https://github.com/eremeyko/VKMailing#messages.txt)
+    2.3 [messages.txt](https://github.com/eremeyko/VKMailing#messagestxt)
 
 3. [Запуск](https://github.com/eremeyko/VKMailing#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA)
 
