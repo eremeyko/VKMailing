@@ -22,6 +22,11 @@ def authvk(strt, accounts):
             )
             vk_session.auth()
             vk = vk_session.get_api()
+
+            if (vk != None):
+                print(f'[#{strt+1} accounts.txt]Успешно вошли.')
+                return vk
+
         except IndexError:
             print('  [!accounts.txt]Уберите лишние пробелы или добавьте аккаунты.')
             exit()
@@ -31,21 +36,17 @@ def authvk(strt, accounts):
             i += 1
             strt += 1
 
-        if (vk != None):
-            print(f'[#{strt+1} accounts.txt]Успешно вошли.')
-            return vk
-
 
 def checkFiles(accounts, userlist, mess):
     if (accounts[0] == ""):
         print('  [!accounts.txt]Укажите аккаунты!')
         exit()
 
-    if (userlist == ""):
+    elif (userlist == ""):
         print('  [!userlist.txt]Укажите страницы!')
         exit()
 
-    if (mess[0] == ""):
+    elif (mess[0] == ""):
         print('  [!messages.txt]Укажите сообщения!')
         exit()
 
@@ -93,7 +94,7 @@ def main(userlist, i, mess, accounts):
                 vk = authvk(i, accounts)
 
             else:
-                print(f'{e.code}:{e}\n[?]Обратитесь к создателю')
+                print(f'  {e.code}:{e}\n  [?]Обратитесь к создателю\n  пж)')
                 exit()
 
 
