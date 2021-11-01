@@ -4,6 +4,7 @@ from os import system
 from sys import exit
 from random import choice
 from vk_api import exceptions
+from time import sleep
 
 i = 0
 
@@ -31,22 +32,18 @@ def authvk(strt, accounts):
             print('  [!accounts.txt]Уберите лишние пробелы или добавьте аккаунты.')
             exit()
 
-        except vk_api.exceptions.AuthError as e:
+        except vk_api.exceptions.AuthError:
             print('  [!accounts.txt]Токен невалид!')
             i += 1
             strt += 1
 
 
-def checkFiles(accounts, userlist, mess):
+def checkFiles(accounts, mess):
     if (accounts[0] == ""):
         print('  [!accounts.txt]Укажите аккаунты!')
         exit()
 
-    elif (userlist == ""):
-        print('  [!userlist.txt]Укажите страницы!')
-        exit()
-
-    elif (mess[0] == ""):
+    if (mess[0] == ""):
         print('  [!messages.txt]Укажите сообщения!')
         exit()
 
@@ -57,54 +54,66 @@ def captcha_handler(captcha):
     return captcha.try_again(key)
 
 
-def main(userlist, i, mess, accounts):
+def getUsers(vk):
+    friendsIds = []
+
+    for i in range(2):
+        friendsList = vk.friends.get(
+            fields='can_write_private_message',
+            count=5000,
+            offset=i
+        )['items']
+        for friend in friendsList:
+            if (friend['can_write_private_message'] == 1 and not friend.get('deactivated')):
+                friendsIds.append(friend['id'])
+    return friendsIds
+
+
+def main(i, mess, accounts):
     vk = authvk(i, accounts)
-    for ids in userlist:
-        id = ids.strip('https://vk.com/')
+    userlist = getUsers(vk)
+    for id in userlist:
         try:
-            if id.startswith('id'):
-                vk.messages.send(
-                    user_id=id.strip('id'),
-                    random_id=0,
-                    message=choice(mess)
-                )
-                print(f'[#{i+1}]Сообщение {id} отправлено.')
-            else:
-                vk.messages.send(
-                    domain=id,
-                    random_id=0,
-                    message=choice(mess)
-                )
-                print(f'[#{i+1}]Сообщение {id} отправлено.')
+            vk.messages.send(
+                user_id=id,
+                random_id=0,
+                message=choice(mess)
+            )
+            print(f'[#{i+1}]Сообщение id{id} отправлено.')
 
         except vk_api.exceptions.Captcha as captcha:
             print('  [?]Ой, капча...')
             captcha_handler(captcha)
-            print(f'[#{i+1}]Сообщение {id} отправлено.')
+            print(f'[#{i+1}]Сообщение id{id} отправлено.')
 
         except vk_api.exceptions.ApiError as e:
+            if (e.code == 6):
+                print(f'  [!{i+1}]Слишком быстро\n  [•{i+1}]Ждем 2 секунды...')
+                sleep(2)
+
             if (e.code == 7):
                 print(f'  [!{i+1}]Лимит\n  [•{i+1}]Меняем аккаунт...')
                 i += 1
                 vk = authvk(i, accounts)
+                userlist = getUsers(vk)
 
             elif (e.code == 5):
                 print(f'  [!{i+1}]Невалид\n  [•{i+1}]Меняем аккаунт...')
                 i += 1
                 vk = authvk(i, accounts)
+                userlist = getUsers(vk)
 
             else:
-                print(f'  {e.code}:{e}\n  [?]Обратитесь к создателю\n  пж)')
+                print(f'{e.code}:{e}\n[?]Обратитесь к создателю')
                 exit()
 
 
 if __name__ == '__main__':
     accounts = open('accounts.txt', 'r').read().splitlines()
-    userlist = open("userlist.txt", 'r').read().splitlines()
     mess = open('messages.txt', 'r').read().split('|')
 
-    checkFiles(accounts, userlist, mess)
+    checkFiles(accounts, mess)
 
-    main(userlist, i, mess, accounts)
+    main(i, mess, accounts)
     print('[:)]Рассылка окончена')
     system('pause')
