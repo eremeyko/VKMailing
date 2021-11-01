@@ -3,7 +3,7 @@
 
  Функционал | Описание | Стадия |
 |----------------|:---------:|:---------:
-| [**По заданному списку**](https://github.com/eremeyko/VKMailing/tree/To-List) | Задается список страниц, кому будут отправляться сообщения | [Готово](https://github.com/eremeyko/VKMailing/tree/To-List)
+| [**По заданному списку**](https://github.com/eremeyko/VKMailing/tree/To-List) | **Задается список страниц, которым будут отправляться сообщения** | [**Готово**](https://github.com/eremeyko/VKMailing/tree/To-List)
 | [По друзьям пользователя](https://github.com/eremeyko/VKMailing/tree/To-Friends) | Сообщения будут отправляться друзьям заданного аккаунта | [Готово*](https://github.com/eremeyko/VKMailing/tree/To-Friends)
 
 > *но требует теста
@@ -23,7 +23,7 @@
 4. [Лимиты и ограничения](https://github.com/eremeyko/VKMailing#%D0%9B%D0%B8%D0%BC%D0%B8%D1%82%D1%8B-%D0%B8-%D0%BE%D0%B3%D1%80%D0%B0%D0%BD%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D1%8F)
 ____
 ## Установка библиотек
-Для работы требуется лишь библиотека VK_api и [vk_captchasolver](https://github.com/DedInc/vk_captchasolver)
+Для работы требуется библиотека VK_api и [vk_captchasolver](https://github.com/DedInc/vk_captchasolver)
 
 Открываем консоль и вводим:
 ```
@@ -35,14 +35,14 @@ pip install vk_api
 
 2. Скачайте первый файл `vk_captchasolver-1.0.0-py3-none-any.whl` 
 
-3. Перекиньте в любую удобную нам папку
+3. Перекиньте в любую удобную Вам папку
 
 3. Откройте консоль в папке с файлом 
 
 4. Пропишите в консоль команду `pip install vk_captchasolver-1.0.0-py3-none-any.whl`
 ____
 ## Заполнение параметров
-Чтобы всё корректно работало, необходимо заполнить лежайшие в папке со скриптом текстовики
+Чтобы всё корректно работало, необходимо заполнить находящиеся в папке со скриптом текстовики
 
 ### accounts.txt
 Принимается неограниченное число аккаунтов формата
