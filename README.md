@@ -4,9 +4,9 @@
  Функционал | Описание | Стадия |
 |----------------|:---------:|:---------:
 | [**По заданному списку**](https://github.com/eremeyko/VKMailing/tree/To-List) | Задается список страниц, кому будут отправляться сообщения | [Готово](https://github.com/eremeyko/VKMailing/tree/To-List)
-| По друзьям пользователя | Сообщения будут отправляться друзьям заданного аккаунта | Разработка...
+| [По друзьям пользователя](https://github.com/eremeyko/VKMailing/edit/To-Friends) | Сообщения будут отправляться друзьям заданного аккаунта | [Готово*](https://github.com/eremeyko/VKMailing/edit/To-Friends)
 
-
+> *но требует теста
 
 ## Введение: 
 1. [Установка библиотек](https://github.com/eremeyko/VKMailing#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B1%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA)
