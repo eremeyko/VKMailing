@@ -1,10 +1,10 @@
-# VKMailing (Рассылка сообщений)
+# VKMailing (Рассылка сообщений друзьям)
 > Синий текст кликабелен
 
  Функционал | Описание | Стадия |
 |----------------|:---------:|:---------:
 | [По заданному списку](https://github.com/eremeyko/VKMailing/tree/To-List) | Задается список страниц, кому будут отправляться сообщения | [Готово](https://github.com/eremeyko/VKMailing/tree/To-List)
-| [**По друзьям пользователя**](https://github.com/eremeyko/VKMailing/edit/To-Friends) | Сообщения будут отправляться друзьям заданного аккаунта | [Готово*](https://github.com/eremeyko/VKMailing/edit/To-Friends)
+| [**По друзьям пользователя**](https://github.com/eremeyko/VKMailing/edit/To-Friends) | **Сообщения будут отправляться друзьям заданного аккаунта** | [Готово*](https://github.com/eremeyko/VKMailing/edit/To-Friends)
 
 > *но требует теста
 
