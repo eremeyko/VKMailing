@@ -1,4 +1,6 @@
 # VKMailing (Рассылка сообщений по списку)
+![Windows](https://img.shields.io/badge/os-windows-blue)
+![Python 3.6](https://img.shields.io/badge/python-3.6+-blue)
 > Синий текст кликабелен
 
  Функционал | Описание | Стадия |
@@ -25,21 +27,15 @@ ____
 ## Установка библиотек
 Для работы требуются библиотека VK_api и [vk_captchasolver](https://github.com/DedInc/vk_captchasolver)
 
-Открываем консоль и вводим:
+Открываем консоль и вводим сначала:
 ```
 pip install vk_api
 ```
-Дожидаемся конца загрузки и читаем следующий пункт
 
-1. Зайдите в репозиторий с [vk_captchasolver (**открой**)](https://github.com/DedInc/vk_captchasolver/releases)
-
-2. Скачайте первый файл `vk_captchasolver-1.0.0-py3-none-any.whl` 
-
-3. Перекиньте в любую удобную Вам папку
-
-3. Откройте консоль в папке с файлом 
-
-4. Пропишите в консоль команду `pip install vk_captchasolver-1.0.0-py3-none-any.whl`
+А следом:
+```
+pip install vk-captchasolver
+```
 ____
 ## Заполнение параметров
 Чтобы всё корректно работало, необходимо заполнить находящиеся в папке со скриптом текстовики
