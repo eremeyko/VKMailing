@@ -1,4 +1,6 @@
 # VKMailing (Рассылка сообщений друзьям)
+![Windows](https://img.shields.io/badge/os-windows-blue)
+![Python 3.6](https://img.shields.io/badge/python-3.6+-blue)
 > Синий текст кликабелен
 
  Функционал | Описание | Стадия |
@@ -21,23 +23,17 @@
 4. [Лимиты и ограничения](https://github.com/eremeyko/VKMailing#%D0%9B%D0%B8%D0%BC%D0%B8%D1%82%D1%8B-%D0%B8-%D0%BE%D0%B3%D1%80%D0%B0%D0%BD%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D1%8F)
 ____
 ## Установка библиотек
-Для работы требуются библиотеки VK_api и [vk_captchasolver](https://github.com/DedInc/vk_captchasolver)
+Для работы требуются библиотека VK_api и [vk_captchasolver](https://github.com/DedInc/vk_captchasolver)
 
-Открываем консоль и вводим:
+Открываем консоль и вводим сначала:
 ```
 pip install vk_api
 ```
-Дожидаемся конца загрузки и читаем следующий пункт
 
-1. Зайдите в репозиторий с [vk_captchasolver (**открой**)](https://github.com/DedInc/vk_captchasolver/releases)
-
-2. Скачайте первый файл `vk_captchasolver-1.0.0-py3-none-any.whl` 
-
-3. Перекиньте в любую удобную Вам папку
-
-3. Откройте консоль в папке с файлом 
-
-4. Пропишите в консоль команду `pip install vk_captchasolver-1.0.0-py3-none-any.whl`
+А следом:
+```
+pip install vk-captchasolver
+```
 ____
 ## Заполнение параметров
 Чтобы всё корректно работало, необходимо заполнить находящиеся в папке со скриптом текстовики
