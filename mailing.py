@@ -3,7 +3,6 @@ import vk_captchasolver as vc
 from os import system
 from sys import exit
 from random import choice
-from vk_api import exceptions
 
 i = 0
 
