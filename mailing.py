@@ -1,6 +1,7 @@
 from os import system
-from random import choice
+from random import choice, shuffle
 from sys import exit
+from time import sleep
 
 import vk_api
 import vk_captchasolver as vc
@@ -29,6 +30,7 @@ def authvk(strt, accounts):
 
         except IndexError:
             print("  [!accounts.txt] Уберите лишние пробелы или добавьте аккаунты.")
+            system("pause")
             exit()
 
         except vk_api.exceptions.AuthError:
@@ -36,18 +38,26 @@ def authvk(strt, accounts):
             i += 1
             strt += 1
 
+        except Exception as e:
+            print(f"  [!!!] {e}")
+            system("pause")
+            exit()
+
 
 def checkFiles(accounts, userlist, mess):
     if accounts[0] == "":
         print("  [!accounts.txt] Укажите аккаунты!")
+        system("pause")
         exit()
 
     elif userlist == "":
         print("  [!userlist.txt] Укажите страницы!")
+        system("pause")
         exit()
 
     elif mess[0] == "":
         print("  [!messages.txt] Укажите сообщения!")
+        system("pause")
         exit()
 
 
@@ -57,11 +67,12 @@ def captcha_handler(captcha):
     return captcha.try_again(key)
 
 
-def main(userlist, i, mess, accounts):
+def main(userlist, i, mess, accounts, timing):
     vk = authvk(i, accounts)
     for ids in userlist:
         id = ids.strip("https://vk.com/")
         try:
+            sleep(timing)
             if id.startswith("id"):
                 vk.messages.send(
                     user_id=id.strip("id"), random_id=0, message=choice(mess)
@@ -78,27 +89,33 @@ def main(userlist, i, mess, accounts):
 
         except vk_api.exceptions.ApiError as e:
             if e.code == 7:
-                print(f"  [!{i+1}] Лимит\n  [•{i+1}]Меняем аккаунт...")
+                print(f"  [!{i+1}] Лимит\n  [•{i+1}] Меняем аккаунт...")
                 i += 1
                 vk = authvk(i, accounts)
 
             elif e.code == 5:
-                print(f"  [!{i+1}] Невалид\n  [•{i+1}]Меняем аккаунт...")
+                print(f"  [!{i+1}] Невалид\n  [•{i+1}] Меняем аккаунт...")
                 i += 1
                 vk = authvk(i, accounts)
 
             else:
                 print(f"  {e.code}:{e}\n  [?] Обратитесь к создателю\tпж)")
+                system("pause")
                 exit()
 
 
 if __name__ == "__main__":
+    timing = None
     accounts = open("accounts.txt", "r").read().splitlines()
     userlist = open("userlist.txt", "r").read().splitlines()
     mess = open("messages.txt", "r").read().split("|")
 
     checkFiles(accounts, userlist, mess)
 
-    main(userlist, i, mess, accounts)
+    system("cls")
+    while timing != 0 or timing < 0 and type(timing) != int:
+        timing = input("[!] Введите задержку между отправкой сообщений\n  ")
+
+    main(shuffle(userlist), i, mess, accounts, timing)
     print("[:)] Рассылка окончена.")
     system("pause")
