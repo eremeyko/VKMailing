@@ -1,5 +1,5 @@
 from os import system
-from random import choice
+from random import choice, shuffle
 from sys import exit
 from time import sleep
 
@@ -25,11 +25,12 @@ def authvk(strt, accounts):
             vk = vk_session.get_api()
 
             if vk is not None:
-                print(f"[#{strt+1} accounts.txt]Успешно вошли.")
+                print(f"[#{strt+1} accounts.txt] Успешно вошли.")
                 return vk
 
         except IndexError:
             print("  [!accounts.txt] Уберите лишние пробелы или добавьте аккаунты.")
+            system("pause")
             exit()
 
         except vk_api.exceptions.AuthError:
@@ -41,10 +42,12 @@ def authvk(strt, accounts):
 def checkFiles(accounts, mess):
     if accounts[0] == "":
         print("  [!accounts.txt] Укажите аккаунты!")
+        system("pause")
         exit()
 
     if mess[0] == "":
         print("  [!messages.txt] Укажите сообщения!")
+        system("pause")
         exit()
 
 
@@ -66,13 +69,14 @@ def getUsers(vk):
                 "deactivated"
             ):
                 friendsIds.append(friend["id"])
-    return friendsIds
+    return shuffle(friendsIds)
 
 
-def main(i, mess, accounts):
+def main(i, mess, accounts, timing):
     vk = authvk(i, accounts)
     userlist = getUsers(vk)
     for id in userlist:
+        sleep(timing)
         try:
             vk.messages.send(user_id=id, random_id=0, message=choice(mess))
             print(f"[#{i+1}] Сообщение id{id} отправлено.")
@@ -84,7 +88,7 @@ def main(i, mess, accounts):
 
         except vk_api.exceptions.ApiError as e:
             if e.code == 6:
-                print(f"  [!{i+1}]Слишком быстро\n  [•{i+1}] Ждем 2 секунды...")
+                print(f"  [!{i+1}] Слишком быстро\n  [•{i+1}] Ждем 2 секунды...")
                 sleep(2)
 
             if e.code == 7:
@@ -101,15 +105,21 @@ def main(i, mess, accounts):
 
             else:
                 print(f"{e.code}:{e}\n[?] Обратитесь к создателю")
+                system("pause")
                 exit()
 
 
 if __name__ == "__main__":
+    timing = None
     accounts = open("accounts.txt", "r").read().splitlines()
     mess = open("messages.txt", "r").read().split("|")
 
     checkFiles(accounts, mess)
 
-    main(i, mess, accounts)
+    system("cls")
+    while timing != 0 or timing < 0 and type(timing) != int:
+        timing = input("[!] Введите задержку между отправкой сообщений\n  ")
+
+    main(i, mess, accounts, timing)
     print("[:)] Рассылка окончена")
     system("pause")
