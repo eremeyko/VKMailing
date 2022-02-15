@@ -6,12 +6,11 @@
  Функционал | Описание | Стадия |
 |----------------|:---------:|:---------:
 | [**По заданному списку**](https://github.com/eremeyko/VKMailing/tree/To-List) | **Задается список страниц, которым будут отправляться сообщения** | [**Готово**](https://github.com/eremeyko/VKMailing/tree/To-List)
-| [По друзьям пользователя](https://github.com/eremeyko/VKMailing/tree/To-Friends) | Сообщения будут отправляться друзьям заданного аккаунта | [Готово*](https://github.com/eremeyko/VKMailing/tree/To-Friends)
+| [По друзьям пользователя](https://github.com/eremeyko/VKMailing/tree/To-Friends) | Сообщения будут отправляться друзьям заданного аккаунта | [Готово](https://github.com/eremeyko/VKMailing/tree/To-Friends)
 | По сообщениям группы | Отправка сообщения пользователям группы, с кем есть переписка и кто разрешил присылать сообщения | Пишется
 
-> *но требует теста
-
 ## Введение: 
+0. [Если у Вас нет Python'а!](https://github.com/eremeyko/VKMailing#%D0%95%D1%81%D0%BB%D0%B8%20%D1%83%20%D0%92%D0%B0%D1%81%20%D0%BD%D0%B5%D1%82%20Python'%D0%B0!)
 1. [Установка библиотек](https://github.com/eremeyko/VKMailing#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B1%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA)
 2. [Заполнение параметров](https://github.com/eremeyko/VKMailing#%D0%97%D0%B0%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%BE%D0%B2)
 
@@ -24,6 +23,13 @@
 3. [Запуск](https://github.com/eremeyko/VKMailing#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA)
 
 4. [Лимиты и ограничения](https://github.com/eremeyko/VKMailing#%D0%9B%D0%B8%D0%BC%D0%B8%D1%82%D1%8B-%D0%B8-%D0%BE%D0%B3%D1%80%D0%B0%D0%BD%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D1%8F)
+____
+## Если у Вас нет Python'а!
+Качаете версию с [Релизов](https://github.com/eremeyko/VKMailing/releases/tag/exe) и распаковываете в любое удобное место 
+
+Проверьте, чтобы в папке с .exe-ником лежали текстовики (см. [Заполнение параметров](https://github.com/eremeyko/VKMailing#%D0%97%D0%B0%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%BE%D0%B2))
+
+Возможны проблемы с отображением ошибок, будьте на чеку
 ____
 ## Установка библиотек
 Для работы требуются библиотека VK_api и [vk_captchasolver](https://github.com/DedInc/vk_captchasolver)
