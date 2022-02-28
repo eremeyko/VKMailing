@@ -105,7 +105,7 @@ def main(userlist, i, mess, accounts, timing):
 
 
 if __name__ == "__main__":
-    timing = None
+    timing = 0
     accounts = open("accounts.txt", "r").read().splitlines()
     userlist = open("userlist.txt", "r").read().splitlines()
     mess = open("messages.txt", "r").read().split("|")
@@ -113,8 +113,11 @@ if __name__ == "__main__":
     checkFiles(accounts, userlist, mess)
 
     system("cls")
-    while timing != 0 or timing < 0 and type(timing) != int:
-        timing = input("[!] Введите задержку между отправкой сообщений\n  ")
+    while timing <= 0:
+        try:
+            timing = int(input("[!] Введите задержку между отправкой сообщений\n  "))
+        except ValueError:
+            pass
 
     main(shuffle(userlist), i, mess, accounts, timing)
     print("[:)] Рассылка окончена.")
