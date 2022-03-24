@@ -119,6 +119,7 @@ if __name__ == "__main__":
         except ValueError:
             pass
 
-    main(shuffle(userlist), i, mess, accounts, timing)
+    shuffle(userlist)
+    main(userlist, i, mess, accounts, timing)
     print("[:)] Рассылка окончена.")
     system("pause")
