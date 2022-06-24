@@ -1,1 +1,2 @@
-login:pass
+login:password
+login:password:token
