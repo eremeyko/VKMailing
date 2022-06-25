@@ -72,8 +72,7 @@ def captcha_handler(captcha):
 
 
 def main(userlist, i, mess, accounts, timing):
-    vk = authvk(accounts)
-    if vk:
+    if vk := authvk(accounts):
         for ids in userlist:
             id = ids.strip("https://vk.com/")
             try:
@@ -82,11 +81,9 @@ def main(userlist, i, mess, accounts, timing):
                     vk.messages.send(
                         user_id=id.strip("id"), random_id=0, message=choice(mess)
                     )
-                    print(f"[#{i + 1}] Сообщение {id} отправлено.")
                 else:
                     vk.messages.send(domain=id, random_id=0, message=choice(mess))
-                    print(f"[#{i + 1}] Сообщение {id} отправлено.")
-
+                print(f"[#{i + 1}] Сообщение {id} отправлено.")
             except vk_api.exceptions.Captcha as captcha:
                 print("  [?] Ой, капча...")
                 captcha_handler(captcha)
