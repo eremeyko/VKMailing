@@ -92,21 +92,18 @@ def main(userlist, i, mess, accounts, timing):
 
             except vk_api.exceptions.ApiError as e:
                 if e.code == 6:
-                    print(f"  [!{i}] Слишком быстро\n  [•{i+1}] Ждем 2 секунды...")
+                    print(f"  [!{i}] Слишком быстро\n  [•{i}] Ждем 2 секунды...")
                     sleep(2)
 
                 elif e.code == 7:
-                    i += 1
-                    print(f"  [!{i}] Лимит\n  [•{i}] Меняем аккаунт...")
+                    print(f"  [!{i}] Лимит\n  [•{i+ 1}] Меняем аккаунт...")
                     vk = authvk(accounts)
 
                 elif e.code == 5:
-                    i += 1
                     print(f"  [!{i}] Невалид\n  [•{i + 1}] Меняем аккаунт...")
                     vk = authvk(accounts)
 
                 elif e.code == 17:
-                    i += 1
                     print(f"  [!{i + 1}] Неожиданная валидация\n  [•{i + 1}] Меняем аккаунт...")
                     vk = authvk(accounts)
 
