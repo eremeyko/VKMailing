@@ -62,8 +62,6 @@ def checkFiles(accounts, userlist, mess):
         system("pause")
         exit()
 
-    system("cls")
-
 
 def captcha_handler(captcha):
     key = vc.solve(sid=captcha.sid, s=1)
@@ -93,7 +91,11 @@ def main(userlist, i, mess, accounts, timing):
                 print(f"[#{i + 1}] Сообщение {id} отправлено.")
 
             except vk_api.exceptions.ApiError as e:
-                if e.code == 7:
+                if e.code == 6:
+                    print(f"  [!{i+1}] Слишком быстро\n  [•{i+1}] Ждем 2 секунды...")
+                    sleep(2)
+
+                elif e.code == 7:
                     i += 1
                     print(f"  [!{i}] Лимит\n  [•{i}] Меняем аккаунт...")
                     vk = authvk(i, accounts)
