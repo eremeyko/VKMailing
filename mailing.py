@@ -17,9 +17,9 @@ message = open("messages.txt", "r", encoding="utf-8").read().split("|")
 def authvk(accounts):
     global vk
     global i
-    for n, j in enumerate(accounts):
+    for n, j in enumerate(accounts, start=1):
         try:
-            print(f"[#{n + 1} accounts.txt] Попытка входа в аккаунт...")
+            print(f"[#{n + i} accounts.txt] Попытка входа в аккаунт...")
             vk_session = vk_api.VkApi(
                 login=j.split(":")[0],
                 password=j.split(":")[1],
@@ -28,7 +28,8 @@ def authvk(accounts):
             ).auth()
             vk = vk_session.get_api()
 
-            print(f"[#{n + 1} accounts.txt] Успешно вошли.")
+            print(f"[#{n + i} accounts.txt] Успешно вошли.")
+            i += n
             return vk
 
         except IndexError:
@@ -38,7 +39,6 @@ def authvk(accounts):
 
         except vk_api.exceptions.AuthError:
             print("  [!accounts.txt] Токен невалид!")
-            i += 1
 
         except Exception as e:
             print(f"  [!!!] {e}")
@@ -92,23 +92,23 @@ def main(userlist, i, mess, accounts, timing):
 
             except vk_api.exceptions.ApiError as e:
                 if e.code == 6:
-                    print(f"  [!{i+1}] Слишком быстро\n  [•{i+1}] Ждем 2 секунды...")
+                    print(f"  [!{i}] Слишком быстро\n  [•{i+1}] Ждем 2 секунды...")
                     sleep(2)
 
                 elif e.code == 7:
                     i += 1
                     print(f"  [!{i}] Лимит\n  [•{i}] Меняем аккаунт...")
-                    vk = authvk(i, accounts)
+                    vk = authvk(accounts)
 
                 elif e.code == 5:
                     i += 1
-                    print(f"  [!{i + 1}] Невалид\n  [•{i + 1}] Меняем аккаунт...")
-                    vk = authvk(i, accounts)
+                    print(f"  [!{i}] Невалид\n  [•{i + 1}] Меняем аккаунт...")
+                    vk = authvk(accounts)
 
                 elif e.code == 17:
                     i += 1
                     print(f"  [!{i + 1}] Неожиданная валидация\n  [•{i + 1}] Меняем аккаунт...")
-                    vk = authvk(i, accounts)
+                    vk = authvk(accounts)
 
                 elif e.code == 18:
                     print(f"  [!{i}] {id} удален")
@@ -116,7 +116,7 @@ def main(userlist, i, mess, accounts, timing):
 
                 elif e.code == 29:
                     i += 1
-                    print(f"  [!{i + 1}] Лимит на методе\n  [•{i + 1}] Меняем аккаунт...")
+                    print(f"  [!{i}] Лимит на методе\n  [•{i + 1}] Меняем аккаунт...")
                     vk = authvk(i, accounts)
 
                 elif e.code == 113:
