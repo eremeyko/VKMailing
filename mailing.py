@@ -9,8 +9,8 @@ import vk_captchasolver as vc
 i = 0
 timing = 0
 
-accounts = open("accounts.txt", "r").read().splitlines()
-message = open("messages.txt", "r").read().split("|")
+accounts = open("accounts.txt", "r", encoding="utf-8").read().splitlines()
+message = open("messages.txt", "r", encoding="utf-8").read().split("|")
 
 
 def authvk(accounts):
