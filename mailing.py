@@ -76,14 +76,17 @@ def main(userlist, i, mess, accounts, timing):
         for ids in userlist:
             id = ids.strip("https://vk.com/")
             try:
+                message = choice(mess)
                 sleep(timing)
                 if id.startswith("id"):
                     vk.messages.send(
-                        user_id=id.strip("id"), random_id=0, message=choice(mess)
+                        user_id=id.strip("id"), random_id=0, message=message
                     )
                 else:
-                    vk.messages.send(domain=id, random_id=0, message=choice(mess))
+                    vk.messages.send(domain=id, random_id=0, message=message)
+
                 print(f"[#{i + 1}] Сообщение {id} отправлено.")
+
             except vk_api.exceptions.Captcha as captcha:
                 print("  [?] Ой, капча...")
                 captcha_handler(captcha)
@@ -100,6 +103,37 @@ def main(userlist, i, mess, accounts, timing):
                     print(f"  [!{i + 1}] Невалид\n  [•{i + 1}] Меняем аккаунт...")
                     vk = authvk(i, accounts)
 
+                elif e.code == 17:
+                    i += 1
+                    print(f"  [!{i + 1}] Неожиданная валидация\n  [•{i + 1}] Меняем аккаунт...")
+                    vk = authvk(i, accounts)
+
+                elif e.code == 18:
+                    print(f"  [!{i}] {id} удален")
+                    pass
+
+                elif e.code == 29:
+                    i += 1
+                    print(f"  [!{i + 1}] Лимит на методе\n  [•{i + 1}] Меняем аккаунт...")
+                    vk = authvk(i, accounts)
+
+                elif e.code == 113:
+                    print(f"  [!{i}] пользователя с id {id} нет")
+                    pass
+
+                elif e.code == 900:
+                    print(f"  [!{i}] {id} в черном списке в заданном аккаунте")
+                    pass
+
+                elif e.code == 902:
+                    print(f"  [!{i}] {id} нельзя отправить сообщение")
+                    pass
+
+                elif e.code == 914:
+                    print(f"  [!{i}] Очень длинный текст сообщения, ВК не пропускает!\n  Измените, текст в message.txt:\n{message}")
+                    system("pause")
+                    exit()
+
                 else:
                     print(f"  {e.code}:{e}\n  [?] Обратитесь к создателю\tпж")
                     system("pause")
@@ -110,7 +144,8 @@ checkFiles(accounts, userlist, message)
 
 while timing <= 0:
     try:
-        timing = int(input("[!] Введите задержку между отправкой сообщений\n  "))
+        timing = int(input("[!] Введите задержку между отправкой сообщений\n  \
+Рекомендуется 5-10 секунд для лучшей работы\n  "))
     except ValueError:
         system("cls")
 
