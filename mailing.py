@@ -25,7 +25,8 @@ def authvk(accounts):
                 password=j.split(":")[1],
                 app_id=2685278,
                 scope=4096,
-            ).auth()
+            )
+            vk_session.auth()
             vk = vk_session.get_api()
 
             print(f"[#{n + i} accounts.txt] Успешно вошли.")
